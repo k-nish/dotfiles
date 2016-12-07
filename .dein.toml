@@ -1,7 +1,3 @@
-# 基本はgithub.comのレポジトリを指定するだけ
-# 参考ファイル:http://qiita.com/hanaclover/items/f45250b55e2298c4ac5a
-# 参考ファイル:http://qiita.com/ryo2851/items/125beff66e4106f7843c
-
 [[plugins]]
 repo = 'davidhalter/jedi-vim'
 on_ft = 'python'

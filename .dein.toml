@@ -1,19 +1,6 @@
 [[plugins]]
 repo = 'davidhalter/jedi-vim'
 on_ft = 'python'
-hook_add = '''
-    let g:jedi#use_tabs_not_buffers = 1
-    let g:jedi#popup_select_first = 0
-    let g:jedi#popup_on_dot = 0
-    let g:jedi#goto_command = "<leader>d"
-    let g:jedi#goto_assignments_command = "<leader>g"
-    let g:jedi#goto_definitions_command = ""
-    let g:jedi#documentation_command = "K"
-    let g:jedi#usages_command = "<leader>n"
-    let g:jedi#rename_command = "<leader>R"
-    autocmd FileType python setlocal completeopt-=preview
-'''
-
 
 [[plugins]]
 repo = 'Shougo/neocomplete.vim'
@@ -23,9 +10,11 @@ repo = 'Shougo/dein.vim'
 
 [[plugins]]
 repo = 'Shougo/vimproc.vim'
+build = 'make'
 
 [[plugins]]
-repo = 'delphinus35/typescript-vim'
+#repo = 'delphinus35/typescript-vim'
+repo= 'leafgarland/typescript-vim'
 rev  = 'colorize-template-strings'
 
 [[plugins]]
@@ -39,11 +28,12 @@ depends = ['vim-airline-themes']
 [[plugins]]
 repo = 'vim-airline/vim-airline-themes'
 
-[[plugins]] 
+[[plugins]]
 repo = 'osyo-manga/vim-precious'
 depends = ['context_filetype.vim']
 
-[[plugins]] repo = 'Shougo/context_filetype.vim'
+[[plugins]] 
+repo = 'Shougo/context_filetype.vim'
 
 [[plugins]] # toml syntax
 repo = 'cespare/vim-toml'
@@ -60,3 +50,19 @@ repo =  'w0ng/vim-hybrid'
 
 [[plugins]]
 repo = 'thinca/vim-zenspace'
+
+[[plugins]]
+repo = 'ujihisa/neco-look'
+
+[[plugins]]
+repo = 'nathanaelkane/vim-indent-guides'
+
+[[plugins]]
+repo = 'tomasr/molokai'
+
+[[plugins]]
+repo = 'kannokanno/previm'
+
+[[plugins]]
+repo = 'plasticboy/vim-markdown'
+

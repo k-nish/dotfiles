@@ -33,15 +33,17 @@ endif
 filetype plugin indent on
 syntax enable
 syntax on
-colorscheme molokai
+"colorscheme molokai
 "colorscheme tender
 "colorscheme koehler
 "colorscheme elflord
 "colorscheme spring-night
+colorscheme rdark
 let g:airline_theme = 'tender'
 let g:molokai_original = 1
 let g:rehash256 = 1
 set t_Co=256
+let g:rdark_current_line = 1
 
 "escをCommand + kに設定
 noremap <C-k> <esc>
@@ -154,7 +156,7 @@ highlight link Flake8_PyFlake    WarningMsg
 "
 "" vimfiler
 """ 自動起動
-autocmd VimEnter * VimFiler -split -simple -winwidth=30 -no-quit
+autocmd VimEnter * VimFiler -split -simple -winwidth=25 -no-quit
 """ [:e .]のように気軽に起動できるようにする
 "let g:vimfiler_as_default_explorer = 1
 """ セーフモードの設定(OFF
@@ -169,7 +171,7 @@ autocmd VimEnter * VimFiler -split -simple -winwidth=30 -no-quit
 "" 'v'や'o'で開かれる新しいウィンドウのサイズを指定する
 "let g:netrw_winsize = 80
 nnoremap <silent> ,f :VimFiler<CR>
-nnoremap <silent> ,s :VimShellPop<CR>
+" nnoremap <silent> ,s :VimShellPop<CR>
 scriptencoding utf-8
 let g:vimfiler_as_default_explorer = get(g:, 'vimfiler_as_default_explorer', 1)
 let g:vimfiler_restore_alternate_file = get(g:, 'vimfiler_restore_alternate_file', 1)
@@ -345,7 +347,7 @@ let g:deoplete#max_list = 10000
 inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-j>  deoplete#mappings#manual_complete()
 inoremap <expr> <C-j>  pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
-inoremap <expr> <S-j> pumvisible() ? "\<C-p>" : "\<S-j>"
+inoremap <expr> <C-h> pumvisible() ? "\<C-p>" : "\<C-u>"
 
 " inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 " inoremap <expr> <Tab>  deoplete#mappings#manual_complete()
@@ -400,6 +402,8 @@ nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
 "---------------------------------
 "startify
 "---------------------------------
+"autocmd BufEnter * if !exists('t:startified') | Startify | let t:startified = 1 | endif
+"let g:startify_disable_at_vimenter = 1
 "let g:startify_custom_header = get(g:, 'startify_custom_header', [
 "      \'',
 "      \'',
@@ -441,7 +445,6 @@ nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
 "      \ escape(fnamemodify(resolve($VIMRUNTIME), ':p'), '\') .'doc',
 "      \ 'bundle/.*/doc',
 "      \ ]
-autocmd BufEnter * if !exists('t:startified') | Startify | let t:startified = 1 | endif
 "fu! <SID>startify_mapping()
 "  if getcwd() == $VIM || getcwd() == expand('~')
 "    nnoremap <silent><buffer> <c-p> :<c-u>CtrlP ~\DotFiles<cr>

@@ -52,7 +52,10 @@ repo = 'tomasr/molokai'
 repo = 'ctrlpvim/ctrlp.vim'
 
 [[plugins]]
-repo = 'mhinz/vim-startify'
+repo = 'nvie/vim-flake8'
 
 [[plugins]]
-repo = 'nvie/vim-flake8'
+repo = 'vim-scripts/rdark'
+
+[[plugins]]
+repo = 'pangloss/vim-javascript'

@@ -152,6 +152,9 @@ alias ala=alacritty
 alias py=python3
 alias py2=python2
 
+alias env35='source activate py35'
+alias env27='source activate py27'
+
 
 ########################################
 # OS 別の設定
@@ -171,7 +174,7 @@ esac
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/K/.oh-my-zsh
+export ZSH=/home/nishimura/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -287,26 +290,72 @@ qiita() {
     open -a Google\ Chrome http://qiita.com/$opt
 }
 
-export PATH="/Users/K/anaconda2/bin:$PATH"$
+# added by Anaconda3 4.4.0 installer
+export PATH="/home/nishimura/anaconda3/bin:$PATH"
 
-# peco
+# # peco
 function peco-select-history() {
-    if ! command_exists tac; then
-        warn " x [Warning] tac is not installed"
-    return 1
+    local tac
+    if which tac > /dev/null; then
+        tac="tac"
+    else
+        tac="tail -r"
     fi
 
-    local BUFFER=$(\history -n 1 | \
-    tac | \
-    peco --query "$LBUFFER")
-    CURSOR="$#BUFFER"
-
+    BUFFER=$(\history -n 1 | \
+        eval $tac | \
+        peco --query "$LBUFFER")
+    CURSOR=$#BUFFER
     zle clear-screen
 }
 zle -N peco-select-history
 bindkey '^r' peco-select-history
 
+#　ユーザーディレクトリ内にインストールした場合はPATHを設定
+PATH=$PATH:/usr/local/bin/
+export PATH=$PATH:/usr/local/bin/
+
+function peco-z-search
+{
+  which peco z > /dev/null
+  if [ $? -ne 0 ]; then
+    echo "Please install peco and z"
+    return 1
+  fi
+  local res=$(z | sort -rn | cut -c 12- | peco)
+  if [ -n "$res" ]; then
+    BUFFER+="cd $res"
+    zle accept-line
+  else
+    return 1
+  fi
+}
+zle -N peco-z-search
+bindkey '^j' peco-z-search
+
+# peco find directory
+function peco-find() {
+  local current_buffer=$BUFFER
+  local search_root=""
+  local file_path=""
+
+  if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+    search_root=`git rev-parse --show-toplevel`
+  else
+    search_root=`pwd`
+  fi
+  file_path="$(find ${search_root} -maxdepth 5 | peco)"
+  BUFFER="${current_buffer} ${file_path}"
+  CURSOR=$#BUFFER
+  zle clear-screen
+}
+zle -N peco-find
+
+# bind keys
+bindkey '^f' peco-find
+
 # go
 export GOROOT=/usr/local/opt/go/libexec
 export GOPATH=$HOME
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+# source ~/.zsh.d/z.sh

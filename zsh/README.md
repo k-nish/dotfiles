@@ -28,7 +28,7 @@
 
 - extract .gz file
 
-    `tar gz peco*.gz`
+    `tar -xvzf peco*.gz`
 
 - set peco
 

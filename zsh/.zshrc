@@ -359,3 +359,17 @@ export GOROOT=/usr/local/opt/go/libexec
 export GOPATH=$HOME
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 # source ~/.zsh.d/z.sh
+#
+
+# プロンプト
+# 1行表示
+# PROMPT="%~ %# "
+# 2行表示
+machine="localMBP"
+PROMPT="%{${fg[cyan]}%}%t "
+PROMPT+="%{${fg[white]}%}%n"
+PROMPT+="%{${fg[magenta]}%}@"
+PROMPT+="%{${fg[white]}%}$machine "
+PROMPT+="%{${fg[green]}%}%d"
+PROMPT+="%{${reset_color}%}
+%{${fg[yellow]}%}%# %{${reset_color}%}"

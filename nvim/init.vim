@@ -34,34 +34,48 @@ filetype plugin indent on
 syntax enable
 syntax on
 "colorscheme molokai
-"colorscheme tender
 "colorscheme koehler
 "colorscheme elflord
 "colorscheme spring-night
-colorscheme rdark
-let g:airline_theme = 'tender'
+"colorscheme vividchalk
+"colorscheme one
+colorscheme eldar
+"colorscheme tender
 let g:molokai_original = 1
 let g:rehash256 = 1
 set t_Co=256
-let g:rdark_current_line = 1
+let g:airline_theme = 'light'
+"let g:rdark_current_line = 1
+
+set ttimeout
+set ttimeoutlen=50
 
 "escをCommand + kに設定
-noremap <C-k> <esc>
-noremap! <C-k> <esc>
-vnoremap <C-k> <esc>
-inoremap <C-k> <esc>
-map <C-k> <esc>
+noremap <C-f> <esc>
+noremap! <C-f> <esc>
+vnoremap <C-f> <esc>
+inoremap <C-f> <esc>
+map <C-f> <esc>
 
 "buffer移動"
 map gn :bn<cr>
 map gu :bp<cr>
 map gd :bd<cr>
 
+"hidden latest highlight
+map ,g :noh<cr>
+
 "行末のスペースを削除
-autocmd BufWritePre * :%s/\s\+$//ge
+aug space
+    " 重複登録回避 - `:h aug` 参照
+    au!
+    " autocmd BufWritePre * :%s/\s\s*$
+    autocmd BufWritePre * :FixWhitespace
+aug END
+"autocmd BufWritePre * :%s/\s\+$//ge
 
 "最終行の空白を削除
-autocmd BufWritePre * call s:remove_line_in_last_line()
+"autocmd BufWritePre * call s:remove_line_in_last_line()
 
 filetype plugin indent on
 set background=dark
@@ -114,13 +128,27 @@ endif
 :autocmd InsertEnter * set cul
 :autocmd InsertLeave * set nocul
 
+" Statuslineの設定
+set laststatus=2
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ \[ENC=%{&fileencoding}]%P
 
-"-----------------------------------
-"syntastic
-"-----------------------------------
-let g:syntastic_python_checkers = ['flake8']
-autocmd BufWritePost *.py call Flake8()
-let g:syntastic_check_on_open=1
+"---------------------------------
+" startify
+"---------------------------------
+let g:startify_files_number = 5
+let g:startify_list_order = [
+        \ ['♻  最近使ったファイル:'],
+        \ 'files',
+        \ ['♲  最近使ったファイル(カレントディレクトリ下):'],
+        \ 'dir',
+        \ ['⚑  セッション:'],
+        \ 'sessions',
+        \ ['☺  ブックマーク:'],
+        \ 'bookmarks',
+        \ ]
+let g:startify_bookmarks = ["~/.config/nvim/init.vim", "~/.config/nvim/dein.toml"]
+let g:startify_session_autoload = 1
+nnoremap <silent> ,s :Startify<CR>
 
 "-----------------------------------
 "vim-flake8
@@ -132,6 +160,7 @@ highlight link Flake8_Warning    WarningMsg
 highlight link Flake8_Complexity WarningMsg
 highlight link Flake8_Naming     WarningMsg
 highlight link Flake8_PyFlake    WarningMsg
+" let g:flake8_ignore = "E501, W293"
 
 "-----------------------------------
 "vimfiler
@@ -268,6 +297,7 @@ function! s:vimfilerinit()
   nmap <buffer> <Tab>  <Plug>(vimfiler_switch_to_other_window)
   nmap <buffer> <C-r>  <Plug>(vimfiler_redraw_screen)
 endf
+
 "-----------------------------------
 "indentLine
 "-----------------------------------
@@ -286,30 +316,6 @@ let g:indent_guides_guide_size = 1
 let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'tagbar', 'unite']
 nnoremap <silent> <C-w> : IndentLinesToggle <CR>
 
-"-----------------------------------
-"Previm
-"-----------------------------------
-augroup PrevimSettings
-    autocmd!
-    autocmd BufNewFile,BufRead *.{md,mdwn,mkd,mkdn,mark*} set filetype=markdown
-augroup END
-
-let g:previm_open_cmd = 'open -a Chrome'
-nnoremap <silent> <C-m> :PrevimOpen<CR> " Ctrl-pでプレビュー
-let g:previm_open_cmd = 'open -a /Applications/Google\ Chrome.app'
-let g:vim_markdown_folding_disabled=1
-
-"行末のスペースを削除
-autocmd BufWritePre * :%s/\s\+$//ge
-
-"最終行の空白を削除
-autocmd BufWritePre * call s:remove_line_in_last_line()
-
-function! s:remove_line_in_last_line()
-  if getline('$') == ""
-     $delete _
-  endif
-endfunction
 
 "---------------------------------
 "jedi-vim
@@ -343,11 +349,36 @@ let g:deoplete#enable_refresh_always = 0
 let g:deoplete#enable_smart_case = 1
 let g:deoplete#file#enable_buffer_path = 1
 let g:deoplete#max_list = 10000
+
+inoremap <silent><expr> <TAB>
+\ pumvisible() ? "\<C-n>" :
+\ <SID>check_back_space() ? "\<TAB>" :
+\ deoplete#mappings#manual_complete()
+function! s:check_back_space() abort "{{{
+let col = col('.') - 1
+return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
+
+"inoremap <silent><expr> <C-j>
+inoremap <silent><expr> <C-s>
+\ pumvisible() ? "\<C-n>" :
+\ <SID>check_back_space() ? "\<TAB>" :
+\ deoplete#mappings#manual_complete()
+function! s:check_back_space() abort "{{{
+let col = col('.') - 1
+return !col || getline('.')[col - 1]  =~ '\s'
+endfunction"}}}
+
+inoremap <expr><C-h>
+\ deoplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS>
+\ deoplete#smart_close_popup()."\<C-h>"
+
 " deoplete tab-complete
-inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-inoremap <expr> <C-j>  deoplete#mappings#manual_complete()
-inoremap <expr> <C-j>  pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
-inoremap <expr> <C-h> pumvisible() ? "\<C-p>" : "\<C-u>"
+"inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+"inoremap <expr> <C-j>  deoplete#mappings#manual_complete()
+"inoremap <expr> <C-j>  pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
+"inoremap <expr> <C-h> pumvisible() ? "\<C-p>" : "\<C-u>"
 
 " inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
 " inoremap <expr> <Tab>  deoplete#mappings#manual_complete()
@@ -400,123 +431,73 @@ nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
 
 "---------------------------------
-"startify
+" startify
 "---------------------------------
-"autocmd BufEnter * if !exists('t:startified') | Startify | let t:startified = 1 | endif
-"let g:startify_disable_at_vimenter = 1
-"let g:startify_custom_header = get(g:, 'startify_custom_header', [
-"      \'',
-"      \'',
-"      \'        /######                                     /##    /##/##             ',
-"      \'       /##__  ##                                   | ##   | #|__/             ',
-"      \'      | ##  \__/ /######  /######  /####### /######| ##   | ##/##/######/#### ',
-"      \'      |  ###### /##__  ##|____  ##/##_____//##__  #|  ## / ##| #| ##_  ##_  ##',
-"      \'       \____  #| ##  \ ## /######| ##     | ########\  ## ##/| #| ## \ ## \ ##',
-"      \'       /##  \ #| ##  | ##/##__  #| ##     | ##_____/ \  ###/ | #| ## | ## | ##',
-"      \'      |  ######| #######|  ######|  ######|  #######  \  #/  | #| ## | ## | ##',
-"      \'       \______/| ##____/ \_______/\_______/\_______/   \_/   |__|__/ |__/ |__/',
-"      \'               | ##                                                           ',
-"      \'               | ##                                                           ',
-"      \'               |__/                                                           ',
-"      \'',
-"      \ ])
-"let g:startify_session_dir = $HOME .  '/.data/' . ( has('nvim') ? 'nvim' : 'vim' ) . '/session'
-"let g:startify_files_number = 6
-"let g:startify_list_order = [
-"      \ ['   My most recently used files in the current directory:'],
-"      \ 'dir',
-"      \ ['   My most recently used files:'],
-"      \ 'files',
-"      \ ['   These are my sessions:'],
-"      \ 'sessions',
-"      \ ['   These are my bookmarks:'],
-"      \ '~/.config/nvim/init.vim',
-"      \ '~/.config/nvim/dein.toml',
-"      \ ]
-"let g:startify_update_oldfiles = 1
-"let g:startify_disable_at_vimenter = 1
-"let g:startify_session_autoload = 1
-"let g:startify_session_persistence = 1
-""let g:startify_session_delete_buffers = 0
-"let g:startify_change_to_dir = 0
-""let g:startify_change_to_vcs_root = 0  " vim-rooter has same feature
-"let g:startify_skiplist = [
-"      \ 'COMMIT_EDITMSG',
-"      \ escape(fnamemodify(resolve($VIMRUNTIME), ':p'), '\') .'doc',
-"      \ 'bundle/.*/doc',
-"      \ ]
-"fu! <SID>startify_mapping()
-"  if getcwd() == $VIM || getcwd() == expand('~')
-"    nnoremap <silent><buffer> <c-p> :<c-u>CtrlP ~\DotFiles<cr>
-"  endif
-"endf
-"augroup startify_map
-"  au!
-"  autocmd FileType startify nnoremap <buffer><F2> <Nop>
-"  autocmd FileType startify call <SID>startify_mapping()
-"  autocmd FileType startify set scrolloff=0
-"augroup END
+let g:startify_files_number = 5
+let g:startify_list_order = [
+        \ ['♻  最近使ったファイル:'],
+        \ 'files',
+        \ ['♲  最近使ったファイル(カレントディレクトリ下):'],
+        \ 'dir',
+        \ ['⚑  セッション:'],
+        \ 'sessions',
+        \ ['☺  ブックマーク:'],
+        \ 'bookmarks',
+        \ ]
+let g:startify_bookmarks = ["~/.config/nvim/init.vim", "~/.config/nvim/dein.toml"]
+let g:startify_session_autoload = 1
 
-function! s:GetVisual()
-    let [lnum1, col1] = getpos("'<")[1:2]
-    let [lnum2, col2] = getpos("'>")[1:2]
-    let lines = getline(lnum1, lnum2)
-    let lines[-1] = lines[-1][:col2 - 2]
-    let lines[0] = lines[0][col1 - 1:]
-    return lines
-endfunction
 
-function! REPLSend(lines)
-    call jobsend(g:last_terminal_job_id, add(a:lines, ''))
-endfunction
-" }}}
-" Commands {{{
-" REPL integration {{{
-command! -range=% REPLSendSelection call REPLSend(s:GetVisual())
-command! REPLSendLine call REPLSend([getline('.')])
-" }}}
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE = 1
-"silent! let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-"silent! let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-"silent! let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-" dark0 + gray
-let g:terminal_color_0 = '#282828'
-let g:terminal_color_8 = '#928374'
+"---------------------------------
+" w0rp/ale
+"---------------------------------
 
-" neurtral_red + bright_red
-let g:terminal_color_1 = '#cc241d'
-let g:terminal_color_9 = '#fb4934'
+" エラー行に表示するマーク
+let g:ale_sign_error = '⨉'
+let g:ale_sign_warning = '⚠'
+" エラー行にカーソルをあわせた際に表示されるメッセージフォーマット
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+" エラー表示の列を常時表示
+let g:ale_sign_column_always = 1
 
-" neutral_green + bright_green
-let g:terminal_color_2 = '#98971a'
-let g:terminal_color_10 = '#b8bb26'
+" ファイルを開いたときにlint実行
+let g:ale_lint_on_enter = 1
+" ファイルを保存したときにlint実行
+let g:ale_lint_on_save = 1
+" 編集中のlintはしない
+let g:ale_lint_on_text_changed = 'never'
 
-" neutral_yellow + bright_yellow
-let g:terminal_color_3 = '#d79921'
-let g:terminal_color_11 = '#fabd2f'
+" lint結果をロケーションリストとQuickFixには表示しない
+" 出てると結構うざいしQuickFixを書き換えられるのは困る
+let g:ale_set_loclist = 0
+let g:ale_set_quickfix = 0
+let g:ale_open_list = 0
+let g:ale_keep_list_window_open = 0
 
-" neutral_blue + bright_blue
-let g:terminal_color_4 = '#458588'
-let g:terminal_color_12 = '#83a598'
+" 有効にするlinter
+let g:ale_linters = {
+\   'python': ['flake8'],
+\}
 
-" neutral_purple + bright_purple
-let g:terminal_color_5 = '#b16286'
-let g:terminal_color_13 = '#d3869b'
+" ALE用プレフィックス
+nmap [ale] <Nop>
+map <C-k> [ale]
+" エラー行にジャンプ
+nmap <silent> [ale]<C-P> <Plug>(ale_previous)
+nmap <silent> [ale]<C-N> <Plug>(ale_next)
 
-" neutral_aqua + faded_aqua
-let g:terminal_color_6 = '#689d6a'
-let g:terminal_color_14 = '#8ec07c'
 
-" light4 + light1
-let g:terminal_color_7 = '#a89984'
-let g:terminal_color_15 = '#ebdbb2'
-augroup Terminal
-    au!
-    au TermOpen * let g:last_terminal_job_id = b:terminal_job_id | IndentLinesDisable
-    au BufWinEnter term://* startinsert | IndentLinesDisable
-    au TermClose * let g:_spacevim_termclose_abuf = expand('<abuf>') | call SpaceVim#mapping#close_term_buffer()
-augroup END
-augroup nvimrc_aucmd
-    autocmd!
-    autocmd CursorHold,FocusGained,FocusLost * rshada|wshada
-augroup END
+call map(dein#check_clean(), "delete(v:val, 'rf')")
+
+
+"---------------------------------
+" fugitive.vim
+"---------------------------------
+nnoremap <silent> gb :Gblame<CR>
+nnoremap <silent> gd :Gdiff<CR>
+nnoremap <silent> gs :Gstatus<CR>
+nnoremap <silent> gw :Gwrite<CR>
+nnoremap <silent> gc :Gcommit<CR>
+"command-line completion
+set wildmenu
+set wildmode=list:longest

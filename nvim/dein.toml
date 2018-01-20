@@ -19,22 +19,19 @@ on_event = 'InsertCharPre'
 repo = 'Shougo/vimfiler.vim'
 
 [[plugins]]
-repo = 'scrooloose/syntastic'
-
-[[plugins]]
 repo = 'davidhalter/jedi-vim'
 
 [[plugins]]
 repo = 'Yggdroot/indentLine'
 
 [[plugins]]
-repo = 'kannokanno/previm'
-
-[[plugins]]
 repo = 'zchee/deoplete-jedi'
 
 [[plugins]]
 repo = 'vim-airline/vim-airline'
+
+[[plugins]]
+repo = 'vim-airline/vim-airline-themes'
 
 [[plugins]]
 repo = 'airblade/vim-gitgutter'
@@ -59,3 +56,34 @@ repo = 'vim-scripts/rdark'
 
 [[plugins]]
 repo = 'pangloss/vim-javascript'
+
+[[plugins]]
+repo = 'zchee/deoplete-clang'
+hook_source = '''
+let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
+let g:deoplete#sources#clang#clang_header = '/Library/Developer/CommandLineTools/usr/lib/clang'
+'''
+
+on_ft = ['c', 'cpp', 'cmake']
+depends = ['deoplete.nvim']
+
+[[plugins]]
+repo = 'rakr/vim-one'
+
+[[plugins]]
+repo = 'tpope/vim-vividchalk'
+
+[[plugins]]
+repo = 'mhinz/vim-startify'
+
+[[plugins]]
+repo = 'w0rp/ale'
+
+[[plugins]]
+repo = 'agude/vim-eldar'
+
+[[plugins]]
+repo = 'tpope/vim-fugitive'
+
+[[plugins]]
+repo = 'bronson/vim-trailing-whitespace'

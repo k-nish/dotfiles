@@ -15,13 +15,6 @@ HISTFILE=~/.zsh_history
 HISTSIZE=1000000
 SAVEHIST=1000000
 
-# プロンプト
-# 1行表示
-# PROMPT="%~ %# "
-# 2行表示
-PROMPT="%{${fg[green]}%}[%n@%m]%{${reset_color}%} %~
-%# "
-
 
 # 単語の区切り文字を指定する
 autoload -Uz select-word-style
@@ -78,7 +71,7 @@ setopt no_beep
 setopt no_flow_control
 
 # Ctrl+Dでzshを終了しない
-setopt ignore_eof
+# setopt ignore_eof
 
 # '#' 以降をコメントとして扱う
 setopt interactive_comments
@@ -132,6 +125,7 @@ alias sudo='sudo '
 # グローバルエイリアス
 alias -g L='| less'
 alias -g G='| grep'
+alias -g P='| peco'
 
 # C で標準出力をクリップボードにコピーする
 # mollifier delta blog : http://mollifier.hatenablog.com/entry/20100317/p1
@@ -263,7 +257,7 @@ PATH=$PATH:/usr/local/texlive/2017/bin/x86_64-darwin/
 
 
 # terminalからgoogle検索
-google() {
+ggle() {
     local str opt
     if [ $# != 0 ]; then
         for i in $*; do
@@ -359,17 +353,21 @@ export GOROOT=/usr/local/opt/go/libexec
 export GOPATH=$HOME
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 # source ~/.zsh.d/z.sh
-#
+
 
 # プロンプト
 # 1行表示
 # PROMPT="%~ %# "
 # 2行表示
-machine="localMBP"
-PROMPT="%{${fg[cyan]}%}%t "
-PROMPT+="%{${fg[white]}%}%n"
-PROMPT+="%{${fg[magenta]}%}@"
-PROMPT+="%{${fg[white]}%}$machine "
-PROMPT+="%{${fg[green]}%}%d"
-PROMPT+="%{${reset_color}%}
-%{${fg[yellow]}%}%# %{${reset_color}%}"
+# for c in {000..255}; do echo -n "\e[38;5;${c}m $c" ; [ $(($c%16)) -eq 15 ] && echo;done;echo
+# machine="###"
+#
+# # PROMPT="%F{014}%t%k"
+# PROMPT="%F{014}[%D{%a %m/%d %T}]"
+# PROMPT+="%F{015}%n%k"
+# PROMPT+="%F{201}@%k"
+# PROMPT+="%F{015}$machine %k"
+# PROMPT+="%F{047}%d"
+# PROMPT+="%{${reset_color}%}
+# %F{207}%# "
+# %F{226}%# %{${reset_color}%}"

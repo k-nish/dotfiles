@@ -9,6 +9,9 @@ build = 'make'
 repo = 'Shougo/unite.vim'
 
 [[plugins]]
+repo = 'Shougo/denite.nvim'
+
+[[plugins]]
 repo = 'Shougo/vimfiler.vim'
 
 [[plugins]]

@@ -6,14 +6,7 @@ repo = 'Shougo/vimproc.vim'
 build = 'make'
 
 [[plugins]]
-repo = 'Shougo/denite.nvim'
-
-[[plugins]]
 repo = 'Shougo/unite.vim'
-
-[[plugins]]
-repo = 'Shougo/deoplete.nvim'
-on_event = 'InsertCharPre'
 
 [[plugins]]
 repo = 'Shougo/vimfiler.vim'
@@ -69,9 +62,6 @@ repo = 'rakr/vim-one'
 
 [[plugins]]
 repo = 'tpope/vim-vividchalk'
-
-[[plugins]]
-repo = 'jiangmiao/auto-pairs'
 
 [[plugins]]
 repo = 'mhinz/vim-startify'

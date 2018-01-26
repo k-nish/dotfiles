@@ -215,8 +215,14 @@ autocmd VimEnter * VimFiler -split -simple -winwidth=25 -no-quit
 "let g:netrw_alto = 1
 "" 'v'や'o'で開かれる新しいウィンドウのサイズを指定する
 "let g:netrw_winsize = 80
-nnoremap <silent> ,f :VimFiler<CR>
+"nnoremap <silent> ,f :VimFiler<CR>
 " nnoremap <silent> ,s :VimShellPop<CR>
+
+"buffer directory
+nnoremap <silent> fe :<C-u>VimFilerBufferDir -quit<CR>
+" Nerdtree like
+nnoremap <C-e> :<C-u>VimFilerBufferDir -split -winwidth=25 -toggle -no-quit<CR>
+
 scriptencoding utf-8
 let g:vimfiler_as_default_explorer = get(g:, 'vimfiler_as_default_explorer', 1)
 let g:vimfiler_restore_alternate_file = get(g:, 'vimfiler_restore_alternate_file', 1)

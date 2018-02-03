@@ -50,6 +50,20 @@ let g:airline_theme = 'light'
 set ttimeout
 set ttimeoutlen=50
 
+" ノーマルモード時だけ ; と : を入れ替える
+nnoremap ; :
+nnoremap : ;
+vnoremap ; :
+vnoremap : ;
+
+"行頭移動を-にする
+nnoremap - ^
+vnoremap - ^
+
+"行末移動を=にする
+nnoremap = $
+vnoremap = $
+
 "escをCommand + kに設定
 noremap <C-f> <esc>
 noremap! <C-f> <esc>
@@ -58,12 +72,12 @@ inoremap <C-f> <esc>
 map <C-f> <esc>
 
 "buffer移動"
-map gn :bn<cr>
-map gu :bp<cr>
-map gd :bd<cr>
+map <F7> ;bn<cr>
+map <F8> ;bp<cr>
+map <F9> ;bd<cr>
 
 "hidden latest highlight
-map ,g :noh<cr>
+map <C-g> :noh<cr>
 
 "行末のスペースを削除
 aug space
@@ -148,7 +162,9 @@ let g:startify_list_order = [
         \ ]
 let g:startify_bookmarks = ["~/.config/nvim/init.vim", "~/.config/nvim/dein.toml"]
 let g:startify_session_autoload = 1
-nnoremap <silent> ,s :Startify<CR>
+nnoremap <silent> <C-s> :Startify<CR>
+
+
 
 "-----------------------------------
 "vim-flake8
@@ -187,7 +203,7 @@ highlight link Flake8_PyFlake    WarningMsg
 """ 自動起動
 autocmd VimEnter * VimFiler -split -simple -winwidth=25 -no-quit
 """ [:e .]のように気軽に起動できるようにする
-"let g:vimfiler_as_default_explorer = 1
+let g:vimfiler_as_default_explorer = 1
 """ セーフモードの設定(OFF
 "let g:vimfiler_safe_mode_by_default=0
 "
@@ -199,8 +215,14 @@ autocmd VimEnter * VimFiler -split -simple -winwidth=25 -no-quit
 "let g:netrw_alto = 1
 "" 'v'や'o'で開かれる新しいウィンドウのサイズを指定する
 "let g:netrw_winsize = 80
-nnoremap <silent> ,f :VimFiler<CR>
+"nnoremap <silent> ,f :VimFiler<CR>
 " nnoremap <silent> ,s :VimShellPop<CR>
+"
+"buffer directory
+nnoremap <silent> fe :<C-u>VimFilerBufferDir -quit<CR>
+" Nerdtree like
+nnoremap <C-e> :<C-u>VimFilerBufferDir -split -winwidth=25 -toggle -no-quit<CR>
+
 scriptencoding utf-8
 let g:vimfiler_as_default_explorer = get(g:, 'vimfiler_as_default_explorer', 1)
 let g:vimfiler_restore_alternate_file = get(g:, 'vimfiler_restore_alternate_file', 1)

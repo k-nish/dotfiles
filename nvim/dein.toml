@@ -40,9 +40,6 @@ repo = 'airblade/vim-gitgutter'
 repo = 'jacoborus/tender.vim'
 
 [[plugins]]
-repo = 'rhysd/vim-color-spring-night'
-
-[[plugins]]
 repo = 'tomasr/molokai'
 
 [[plugins]]

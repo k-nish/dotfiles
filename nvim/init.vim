@@ -72,12 +72,12 @@ inoremap <C-f> <esc>
 map <C-f> <esc>
 
 "buffer移動"
-map <F7> ;bn<cr>
-map <F8> ;bp<cr>
-map <F9> ;bd<cr>
+map <F3> ;bn<cr>
+map <F4> ;bp<cr>
+"map <F4> ;bd<cr>
 
 "hidden latest highlight
-map <C-g> :noh<cr>
+map <C-b> ;noh<cr>
 
 "行末のスペースを削除
 aug space

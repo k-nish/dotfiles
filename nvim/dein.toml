@@ -84,3 +84,21 @@ repo = 'tpope/vim-fugitive'
 
 [[plugins]]
 repo = 'bronson/vim-trailing-whitespace'
+
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+
+[[plugins]]
+repo = 'mechatroner/rainbow_csv'
+
+[[plugins]]
+repo = 'sjl/badwolf'
+
+[[plugins]]
+repo = 'racer-rust/vim-racer'
+
+[[plugins]]
+repo = 'rust-lang/rust.vim'

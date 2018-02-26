@@ -41,10 +41,11 @@ syntax on
 "colorscheme one
 colorscheme eldar
 "colorscheme tender
+colorscheme badwolf
 let g:molokai_original = 1
 let g:rehash256 = 1
 set t_Co=256
-let g:airline_theme = 'light'
+let g:airline_theme = 'dark'
 "let g:rdark_current_line = 1
 
 set ttimeout
@@ -72,8 +73,8 @@ inoremap <C-f> <esc>
 map <C-f> <esc>
 
 "buffer移動"
-map <F3> ;bn<cr>
-map <F4> ;bp<cr>
+map <C-w> ;bp<cr>
+"map <C-u> ;bn<cr>
 "map <F4> ;bd<cr>
 
 "hidden latest highlight
@@ -219,9 +220,9 @@ let g:vimfiler_as_default_explorer = 1
 " nnoremap <silent> ,s :VimShellPop<CR>
 "
 "buffer directory
-nnoremap <silent> fe :<C-u>VimFilerBufferDir -quit<CR>
+nnoremap <silent> fe :VimFilerBufferDir -quit<CR>
 " Nerdtree like
-nnoremap <C-e> :<C-u>VimFilerBufferDir -split -winwidth=25 -toggle -no-quit<CR>
+nnoremap <C-e> :VimFilerBufferDir -split -winwidth=25 -toggle -no-quit<CR>
 
 scriptencoding utf-8
 let g:vimfiler_as_default_explorer = get(g:, 'vimfiler_as_default_explorer', 1)
@@ -336,7 +337,7 @@ let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_exclude_filetypes = ['help', 'nerdtree', 'tagbar', 'unite']
-nnoremap <silent> <C-w> : IndentLinesToggle <CR>
+nnoremap <silent> <F2> : IndentLinesToggle <CR>
 
 
 "---------------------------------
@@ -448,7 +449,7 @@ let g:unite_source_history_yank_enable =1
 let g:unite_source_file_mru_limit = 200
 nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
 nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
-nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
 
@@ -517,9 +518,17 @@ call map(dein#check_clean(), "delete(v:val, 'rf')")
 "---------------------------------
 nnoremap <silent> gb :Gblame<CR>
 nnoremap <silent> gd :Gdiff<CR>
-nnoremap <silent> gs :Gstatus<CR>
-nnoremap <silent> gw :Gwrite<CR>
-nnoremap <silent> gc :Gcommit<CR>
+nnoremap <silent> ms :Gstatus<CR>
+nnoremap <silent> mw :Gwrite<CR>
+nnoremap <silent> mc :Gcommit<CR>
 "command-line completion
 set wildmenu
 set wildmode=list:longest
+
+let g:badwolf_tabline = 3
+
+
+"--------------------------------
+"rust.vim
+"--------------------------------
+let g:rustfmt_autosave = 1

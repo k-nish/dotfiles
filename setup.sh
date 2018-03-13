@@ -17,7 +17,13 @@ echo "install peco"
 tar -zxvf ./zsh/peco_linux_386.tar.gz
 sudo cp peco_linux_386/peco /usr/local/bin/
 
+echo "setup zsh"
+sudo apt install zsh
+echo "nishimura" | which zsh | xargs -t sudo -S chsh -s
+
+
 echo "install oh-my-zsh"
+sudo apt install curl
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 echo "setup zsh"

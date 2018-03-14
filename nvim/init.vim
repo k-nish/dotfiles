@@ -33,15 +33,15 @@ endif
 filetype plugin indent on
 syntax enable
 syntax on
-colorscheme molokai
+"colorscheme molokai
 "colorscheme koehler
 "colorscheme elflord
 "colorscheme spring-night
 "colorscheme vividchalk
 "colorscheme one
-"colorscheme eldar
+colorscheme eldar
 "colorscheme tender
-"colorscheme badwolf
+colorscheme badwolf
 let g:molokai_original = 1
 let g:rehash256 = 1
 set t_Co=256
@@ -66,19 +66,19 @@ nnoremap = $
 vnoremap = $
 
 "escをCommand + kに設定
-noremap <C-f> <esc>
-noremap! <C-f> <esc>
-vnoremap <C-f> <esc>
-inoremap <C-f> <esc>
-map <C-f> <esc>
+noremap <Space>f <esc>
+noremap! <Space>f <esc>
+vnoremap <Space>f <esc>
+inoremap <Space>f <esc>
+map <Space>f <esc>
 
 "buffer移動"
-map <C-w> ;bp<cr>
-"map <C-u> ;bn<cr>
+map <Space>w ;bp<cr>
+map <Space>u ;bn<cr>
 "map <F4> ;bd<cr>
 
 "hidden latest highlight
-map <C-b> ;noh<cr>
+map <Space>g ;noh<cr>
 
 "行末のスペースを削除
 aug space
@@ -163,7 +163,7 @@ let g:startify_list_order = [
         \ ]
 let g:startify_bookmarks = ["~/.config/nvim/init.vim", "~/.config/nvim/dein.toml"]
 let g:startify_session_autoload = 1
-nnoremap <silent> <C-s> :Startify<CR>
+nnoremap <silent> <Space>t :Startify<CR>
 
 
 
@@ -222,7 +222,7 @@ let g:vimfiler_as_default_explorer = 1
 "buffer directory
 nnoremap <silent> fe :VimFilerBufferDir -quit<CR>
 " Nerdtree like
-nnoremap <C-e> :VimFilerBufferDir -split -winwidth=25 -toggle -no-quit<CR>
+nnoremap <Space>e :VimFilerBufferDir -split -winwidth=25 -toggle -no-quit<CR>
 
 scriptencoding utf-8
 let g:vimfiler_as_default_explorer = get(g:, 'vimfiler_as_default_explorer', 1)
@@ -449,7 +449,7 @@ let g:unite_source_history_yank_enable =1
 let g:unite_source_file_mru_limit = 200
 nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
 nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
-nnoremap <silent> uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> <Space>j :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
 
@@ -516,11 +516,11 @@ call map(dein#check_clean(), "delete(v:val, 'rf')")
 "---------------------------------
 " fugitive.vim
 "---------------------------------
-nnoremap <silent> gb :Gblame<CR>
-nnoremap <silent> gd :Gdiff<CR>
-nnoremap <silent> ms :Gstatus<CR>
-nnoremap <silent> mw :Gwrite<CR>
-nnoremap <silent> mc :Gcommit<CR>
+nnoremap <silent> <Space>b :Gblame<CR>
+nnoremap <silent> <Space>d :Gdiff<CR>
+nnoremap <silent> <Space>s :Gstatus<CR>
+nnoremap <silent> <Space>a :Gwrite<CR>
+nnoremap <silent> <Space>c :Gcommit<CR>
 "command-line completion
 set wildmenu
 set wildmode=list:longest

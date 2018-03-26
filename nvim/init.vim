@@ -28,7 +28,7 @@ endif
 if has('vim_starting') && dein#check_install()
   call dein#install()
 endif
-" }}}
+" }}
 
 filetype plugin indent on
 syntax enable
@@ -65,20 +65,30 @@ vnoremap - ^
 nnoremap = $
 vnoremap = $
 
+"let mapleader = "\<Space>"
+"let mapleader = "<Tab>"
+let mapleader = ","
+
 "escをCommand + kに設定
-noremap <Space>f <esc>
-noremap! <Space>f <esc>
-vnoremap <Space>f <esc>
-inoremap <Space>f <esc>
-map <Space>f <esc>
+noremap <Leader>f <esc>
+noremap! <Leader>f <esc>
+vnoremap <Leader>f <esc>
+inoremap <Leader>f <esc>
+map <Leader>f <esc>
+
+noremap <Tab-f> <esc>
+noremap! <Tab-f> <esc>
+vnoremap <Tab-f> <esc>
+inoremap <Tab-f> <esc>
+map <Tab-f> <esc>
 
 "buffer移動"
-map <Space>w ;bp<cr>
-map <Space>u ;bn<cr>
+map <Leader>w ;bp<cr>
+map <Leader>u ;bn<cr>
 "map <F4> ;bd<cr>
 
 "hidden latest highlight
-map <Space>g ;noh<cr>
+map <Leader>g ;noh<cr>
 
 "行末のスペースを削除
 aug space
@@ -163,7 +173,7 @@ let g:startify_list_order = [
         \ ]
 let g:startify_bookmarks = ["~/.config/nvim/init.vim", "~/.config/nvim/dein.toml"]
 let g:startify_session_autoload = 1
-nnoremap <silent> <Space>t :Startify<CR>
+nnoremap <silent> <Leader>t :Startify<CR>
 
 
 
@@ -222,7 +232,7 @@ let g:vimfiler_as_default_explorer = 1
 "buffer directory
 nnoremap <silent> fe :VimFilerBufferDir -quit<CR>
 " Nerdtree like
-nnoremap <Space>e :VimFilerBufferDir -split -winwidth=25 -toggle -no-quit<CR>
+nnoremap <Leader>e :VimFilerBufferDir -split -winwidth=25 -toggle -no-quit<CR>
 
 scriptencoding utf-8
 let g:vimfiler_as_default_explorer = get(g:, 'vimfiler_as_default_explorer', 1)
@@ -296,7 +306,7 @@ function! s:vimfilerinit()
   set nonumber
   set norelativenumber
 
-  silent! nunmap <buffer> <Space>
+  silent! nunmap <buffer> <Leader>
   silent! nunmap <buffer> <C-l>
   silent! nunmap <buffer> <C-j>
   silent! nunmap <buffer> E
@@ -422,7 +432,7 @@ let g:airline#extensions#tabline#enabled = 1
 "---------------------------------
 "Prefix: s
 nnoremap s <Nop>
-nnoremap sa :<C-u>CtrlP<Space>
+nnoremap sa :<C-u>CtrlP<Leader>
 nnoremap sb :<C-u>CtrlPBuffer<CR>
 nnoremap sd :<C-u>CtrlPDir<CR>
 nnoremap sf :<C-u>CtrlP<CR>
@@ -449,7 +459,7 @@ let g:unite_source_history_yank_enable =1
 let g:unite_source_file_mru_limit = 200
 nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
 nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
-nnoremap <silent> <Space>j :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> <Leader>j :<C-u>UniteWithBufferDir -buffer-name=files fLeader>
 nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
 
@@ -516,11 +526,11 @@ call map(dein#check_clean(), "delete(v:val, 'rf')")
 "---------------------------------
 " fugitive.vim
 "---------------------------------
-nnoremap <silent> <Space>b :Gblame<CR>
-nnoremap <silent> <Space>d :Gdiff<CR>
-nnoremap <silent> <Space>s :Gstatus<CR>
-nnoremap <silent> <Space>a :Gwrite<CR>
-nnoremap <silent> <Space>c :Gcommit<CR>
+nnoremap <silent> <Leader>b :Gblame<CR>
+nnoremap <silent> <Leader>d :Gdiff<CR>
+nnoremap <silent> <Leader>s :Gstatus<CR>
+nnoremap <silent> <Leader>a :Gwrite<CR>
+nnoremap <silent> <Leader>c :Gcommit<CR>
 "command-line completion
 set wildmenu
 set wildmode=list:longest

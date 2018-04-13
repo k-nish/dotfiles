@@ -284,9 +284,6 @@ qiita() {
     open -a Google\ Chrome http://qiita.com/$opt
 }
 
-# added by Anaconda3 4.4.0 installer
-export PATH="/home/nishimura/anaconda3/bin:$PATH"
-
 # # peco
 function peco-select-history() {
     local tac

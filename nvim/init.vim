@@ -42,6 +42,7 @@ colorscheme molokai
 "colorscheme eldar
 "colorscheme tender
 "colorscheme badwolf
+"colorscheme deus
 let g:molokai_original = 1
 let g:rehash256 = 1
 set t_Co=256
@@ -65,26 +66,24 @@ vnoremap - ^
 nnoremap = $
 vnoremap = $
 
-"let mapleader = "\<Space>"
-"let mapleader = "<Tab>"
 let mapleader = ","
 
 "escをCommand + kに設定
-noremap <Leader>f <esc>
-noremap! <Leader>f <esc>
-vnoremap <Leader>f <esc>
-inoremap <Leader>f <esc>
-map <Leader>f <esc>
+"noremap <Leader>f <esc>
+"noremap! <Leader>f <esc>
+"vnoremap <Leader>f <esc>
+"inoremap <Leader>f <esc>
+"map <Leader>f <esc>
 
-noremap <Tab-f> <esc>
-noremap! <Tab-f> <esc>
-vnoremap <Tab-f> <esc>
-inoremap <Tab-f> <esc>
-map <Tab-f> <esc>
+noremap <C-f> <esc>
+noremap! <C-f> <esc>
+vnoremap <C-f> <esc>
+inoremap <C-f> <esc>
+map <C-f> <esc>
 
 "buffer移動"
-map <Leader>w ;bp<cr>
-map <Leader>u ;bn<cr>
+map <C-h> ;bp<cr>
+map <C-l> ;bn<cr>
 "map <F4> ;bd<cr>
 
 "hidden latest highlight
@@ -173,7 +172,7 @@ let g:startify_list_order = [
         \ ]
 let g:startify_bookmarks = ["~/.config/nvim/init.vim", "~/.config/nvim/dein.toml"]
 let g:startify_session_autoload = 1
-nnoremap <silent> <Leader>t :Startify<CR>
+nnoremap <silent> <C-j> :Startify<CR>
 
 
 
@@ -232,7 +231,7 @@ let g:vimfiler_as_default_explorer = 1
 "buffer directory
 nnoremap <silent> fe :VimFilerBufferDir -quit<CR>
 " Nerdtree like
-nnoremap <Leader>e :VimFilerBufferDir -split -winwidth=25 -toggle -no-quit<CR>
+nnoremap <C-e> :VimFilerBufferDir -split -winwidth=25 -toggle -no-quit<CR>
 
 scriptencoding utf-8
 let g:vimfiler_as_default_explorer = get(g:, 'vimfiler_as_default_explorer', 1)
@@ -358,12 +357,12 @@ let g:jedi#completions_enabled = 0
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#use_tabs_not_buffers = 0
 let g:jedi#popup_on_dot = 0
-let g:jedi#goto_command = "<leader>d"
-let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_command = "<C-i>"
+let g:jedi#goto_assignments_command = "<C-g>"
 let g:jedi#goto_definitions_command = ""
 let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>n"
-let g:jedi#rename_command = "<leader>R"
+let g:jedi#usages_command = "<C-n>"
+let g:jedi#rename_command = "<C-r>"
 autocmd FileType python setlocal completeopt-=preview
 
 if !exists('g:neocomplete#force_omni_input_patterns')
@@ -432,15 +431,15 @@ let g:airline#extensions#tabline#enabled = 1
 "---------------------------------
 "Prefix: s
 nnoremap s <Nop>
-nnoremap sa :<C-u>CtrlP<Leader>
-nnoremap sb :<C-u>CtrlPBuffer<CR>
-nnoremap sd :<C-u>CtrlPDir<CR>
-nnoremap sf :<C-u>CtrlP<CR>
-nnoremap sl :<C-u>CtrlPLine<CR>
-nnoremap sm :<C-u>CtrlPMRUFiles<CR>
-nnoremap sq :<C-u>CtrlPQuickfix<CR>
-nnoremap ss :<C-u>CtrlPMixed<CR>
-nnoremap st :<C-u>CtrlPTag<CR>
+nnoremap sa :<C-p>CtrlP<Leader>
+nnoremap sb :<C-p>CtrlPBuffer<CR>
+nnoremap sd :<C-p>CtrlPDir<CR>
+nnoremap sf :<C-p>CtrlP<CR>
+nnoremap sl :<C-p>CtrlPLine<CR>
+nnoremap sm :<C-p>CtrlPMRUFiles<CR>
+nnoremap sq :<C-p>CtrlPQuickfix<CR>
+nnoremap ss :<C-p>CtrlPMixed<CR>
+nnoremap st :<C-p>CtrlPTag<CR>
 
 let g:ctrlp_map = '<Nop>'
 " Guess vcs root dir
@@ -459,9 +458,10 @@ let g:unite_source_history_yank_enable =1
 let g:unite_source_file_mru_limit = 200
 nnoremap <silent> ,uy :<C-u>Unite history/yank<CR>
 nnoremap <silent> ,ub :<C-u>Unite buffer<CR>
-nnoremap <silent> <Leader>j :<C-u>UniteWithBufferDir -buffer-name=files fLeader>
+nnoremap <silent> ,uf :<C-u>UniteWithBufferDir -buffer-name=files fLeader><CR>
 nnoremap <silent> ,ur :<C-u>Unite -buffer-name=register register<CR>
 nnoremap <silent> ,uu :<C-u>Unite file_mru buffer<CR>
+nnoremap <silent> <C-k> :Unite file<CR>
 
 "---------------------------------
 " startify
@@ -514,7 +514,7 @@ let g:ale_linters = {
 
 " ALE用プレフィックス
 nmap [ale] <Nop>
-map <C-k> [ale]
+map <C-m> [ale]
 " エラー行にジャンプ
 nmap <silent> [ale]<C-P> <Plug>(ale_previous)
 nmap <silent> [ale]<C-N> <Plug>(ale_next)
@@ -526,9 +526,9 @@ call map(dein#check_clean(), "delete(v:val, 'rf')")
 "---------------------------------
 " fugitive.vim
 "---------------------------------
-nnoremap <silent> <Leader>b :Gblame<CR>
+nnoremap <silent> <C-b> :Gblame<CR>
 nnoremap <silent> <Leader>d :Gdiff<CR>
-nnoremap <silent> <Leader>s :Gstatus<CR>
+nnoremap <silent> <C-s> :Gstatus<CR>
 nnoremap <silent> <Leader>a :Gwrite<CR>
 nnoremap <silent> <Leader>c :Gcommit<CR>
 "command-line completion

@@ -79,7 +79,7 @@ setopt interactive_comments
 # ディレクトリ名だけでcdする
 setopt auto_cd
 # autols
-function chpwd() { ls }
+# function chpwd() { ls }
 
 # cd したら自動的にpushdする
 setopt auto_pushd

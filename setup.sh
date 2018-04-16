@@ -29,4 +29,6 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 echo "setup zsh"
 cp ./zsh/.zshrc $HOME/
 
-
+git config --global user.email "koh.oct.un@gmail.com"
+git config --global user.name "k-nish"
+git config --global core.editor 'nvim -c "set fenc=utf-8"'

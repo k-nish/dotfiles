@@ -37,13 +37,7 @@ repo = 'vim-airline/vim-airline-themes'
 repo = 'airblade/vim-gitgutter'
 
 [[plugins]]
-repo = 'jacoborus/tender.vim'
-
-[[plugins]]
 repo = 'tomasr/molokai'
-
-[[plugins]]
-repo = 'ctrlpvim/ctrlp.vim'
 
 [[plugins]]
 repo = 'nvie/vim-flake8'
@@ -65,19 +59,10 @@ on_ft = ['c', 'cpp', 'cmake']
 depends = ['deoplete.nvim']
 
 [[plugins]]
-repo = 'rakr/vim-one'
-
-[[plugins]]
-repo = 'tpope/vim-vividchalk'
-
-[[plugins]]
 repo = 'mhinz/vim-startify'
 
 [[plugins]]
 repo = 'w0rp/ale'
-
-[[plugins]]
-repo = 'agude/vim-eldar'
 
 [[plugins]]
 repo = 'tpope/vim-fugitive'
@@ -102,3 +87,12 @@ repo = 'racer-rust/vim-racer'
 
 [[plugins]]
 repo = 'rust-lang/rust.vim'
+
+[[plugins]]
+repo = 'majutsushi/tagbar'
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'tpope/vim-commentary'

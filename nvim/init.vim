@@ -33,7 +33,7 @@ endif
 filetype plugin indent on
 syntax enable
 syntax on
-colorscheme molokai
+"colorscheme molokai
 "colorscheme koehler
 "colorscheme elflord
 "colorscheme spring-night
@@ -41,7 +41,7 @@ colorscheme molokai
 "colorscheme one
 "colorscheme eldar
 "colorscheme tender
-"colorscheme badwolf
+colorscheme badwolf
 "colorscheme deus
 let g:molokai_original = 1
 let g:rehash256 = 1
@@ -170,7 +170,7 @@ let g:startify_list_order = [
         \ ['☺  ブックマーク:'],
         \ 'bookmarks',
         \ ]
-let g:startify_bookmarks = ["~/.config/nvim/init.vim", "~/.config/nvim/dein.toml"]
+let g:startify_bookmarks = ["~/.config/nvim/init.vim", "~/.config/nvim/dein.toml", "~/.zshrc"]
 let g:startify_session_autoload = 1
 nnoremap <silent> <C-j> :Startify<CR>
 
@@ -211,7 +211,7 @@ highlight link Flake8_PyFlake    WarningMsg
 "
 "" vimfiler
 """ 自動起動
-autocmd VimEnter * VimFiler -split -simple -winwidth=25 -no-quit
+"autocmd VimEnter * VimFiler -split -simple -winwidth=25 -no-quit
 """ [:e .]のように気軽に起動できるようにする
 let g:vimfiler_as_default_explorer = 1
 """ セーフモードの設定(OFF
@@ -426,28 +426,28 @@ let g:deoplete#enable_at_startup = 1
 "---------------------------------
 let g:airline#extensions#tabline#enabled = 1
 
-"---------------------------------
-"ctrlp
-"---------------------------------
-"Prefix: s
-nnoremap s <Nop>
-nnoremap sa :<C-p>CtrlP<Leader>
-nnoremap sb :<C-p>CtrlPBuffer<CR>
-nnoremap sd :<C-p>CtrlPDir<CR>
-nnoremap sf :<C-p>CtrlP<CR>
-nnoremap sl :<C-p>CtrlPLine<CR>
-nnoremap sm :<C-p>CtrlPMRUFiles<CR>
-nnoremap sq :<C-p>CtrlPQuickfix<CR>
-nnoremap ss :<C-p>CtrlPMixed<CR>
-nnoremap st :<C-p>CtrlPTag<CR>
-
-let g:ctrlp_map = '<Nop>'
-" Guess vcs root dir
-let g:ctrlp_working_path_mode = 'ra'
-" Open new file in current window
-let g:ctrlp_open_new_file = 'r'
-let g:ctrlp_extensions = ['tag', 'quickfix', 'dir', 'line', 'mixed']
-let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:18'
+""---------------------------------
+""ctrlp
+""---------------------------------
+""Prefix: s
+"nnoremap s <Nop>
+"nnoremap sa :<C-p>CtrlP<Leader>
+"nnoremap sb :<C-p>CtrlPBuffer<CR>
+"nnoremap sd :<C-p>CtrlPDir<CR>
+"nnoremap sf :<C-p>CtrlP<CR>
+"nnoremap sl :<C-p>CtrlPLine<CR>
+"nnoremap sm :<C-p>CtrlPMRUFiles<CR>
+"nnoremap sq :<C-p>CtrlPQuickfix<CR>
+"nnoremap ss :<C-p>CtrlPMixed<CR>
+"nnoremap st :<C-p>CtrlPTag<CR>
+"
+"let g:ctrlp_map = '<Nop>'
+"" Guess vcs root dir
+"let g:ctrlp_working_path_mode = 'ra'
+"" Open new file in current window
+"let g:ctrlp_open_new_file = 'r'
+"let g:ctrlp_extensions = ['tag', 'quickfix', 'dir', 'line', 'mixed']
+"let g:ctrlp_match_window = 'bottom,order:btt,min:1,max:18'
 
 
 "---------------------------------
@@ -542,3 +542,16 @@ let g:badwolf_tabline = 3
 "rust.vim
 "--------------------------------
 let g:rustfmt_autosave = 1
+
+
+"--------------------------------
+"tagber
+"--------------------------------
+nnoremap <C-o> :TagbarToggle<CR>
+
+
+"--------------------------------
+"vim-commentary
+"--------------------------------
+nnoremap <Leader>r :gc<CR>
+autocmd FileType apache setlocal commentstring=#\ %s

@@ -33,7 +33,7 @@ endif
 filetype plugin indent on
 syntax enable
 syntax on
-colorscheme molokai
+" colorscheme molokai
 "colorscheme koehler
 "colorscheme elflord
 "colorscheme spring-night
@@ -41,7 +41,7 @@ colorscheme molokai
 "colorscheme one
 "colorscheme eldar
 "colorscheme tender
-"colorscheme badwolf
+colorscheme badwolf
 "colorscheme deus
 let g:molokai_original = 1
 let g:rehash256 = 1

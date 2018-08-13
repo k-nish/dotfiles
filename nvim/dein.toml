@@ -96,3 +96,15 @@ repo = 'tpope/vim-surround'
 
 [[plugins]]
 repo = 'tpope/vim-commentary'
+
+[[plugins]]
+repo = 'agude/vim-eldar'
+
+[[plugins]]
+repo = 'plytophogy/vim-virtualenv'
+
+[[plugins]]
+repo = 'morhetz/gruvbox'
+
+[[plugins]]
+repo = 'luochen1990/rainbow'

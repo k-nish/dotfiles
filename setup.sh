@@ -1,10 +1,11 @@
 echo "install neovim"
-sudo apt install software-properties-common
+sudo apt -y install software-properties-common
 sudo add-apt-repository ppa:neovim-ppa/stable
 sudo apt update
-sudo apt install neovim
+sudo apt -y install neovim
 
-sudo apt install python-dev python-pip python3-dev python3-pip
+sudo apt install -y python-dev python-pip python3-dev python3-pip
+echo 'set -g default-terminal "screen-256color"' >> ~/.byobu/profile.tmux
 
 sudo pip3 install neovim flake8
 sudo pip install neovim flake8
@@ -14,12 +15,17 @@ cp ./nvim/init.vim $HOME/.config/nvim/
 cp ./nvim/dein.toml $HOME/.config/nvim/
 cp ./flake8 $HOME/.config/
 
+echo "git setting"
+git config --global user.email "koh.oct.un@gmail.com"
+git config --global user.name "k-nish"
+git config --global core.editor 'nvim -c "set fenc=utf-8"'
+
 echo "install peco"
 tar -zxvf ./zsh/peco_linux_386.tar.gz
 sudo cp peco_linux_386/peco /usr/local/bin/
 
 echo "install necessary moduels"
-sudo apt install ctags zsh curl tig git htop
+sudo apt install -y ctags zsh curl tig git htop
 
 echo "setup zsh"
 echo "nishimura" | which zsh | xargs -t sudo -S chsh -s
@@ -30,6 +36,3 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 echo "setup zsh"
 cp ./zsh/.zshrc $HOME/
 
-git config --global user.email "koh.oct.un@gmail.com"
-git config --global user.name "k-nish"
-git config --global core.editor 'nvim -c "set fenc=utf-8"'

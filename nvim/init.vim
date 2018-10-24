@@ -73,12 +73,6 @@ vnoremap = $
 let mapleader = ","
 
 "escをCommand + kに設定
-"noremap <Leader>f <esc>
-"noremap! <Leader>f <esc>
-"vnoremap <Leader>f <esc>
-"inoremap <Leader>f <esc>
-"map <Leader>f <esc>
-
 noremap <C-f> <esc>
 noremap! <C-f> <esc>
 vnoremap <C-f> <esc>
@@ -196,6 +190,17 @@ call submode#map('bufmove', 'n', '', '>', '<C-w>>')
 call submode#map('bufmove', 'n', '', '<', '<C-w><')
 call submode#map('bufmove', 'n', '', '+', '<C-w>+')
 call submode#map('bufmove', 'n', '', '-', '<C-w>-')
+
+" terminal
+if has('nvim')
+  " Neovim 用
+  autocmd WinEnter * if &buftype ==# 'terminal' | startinsert | endif
+else
+  " Vim 用
+  autocmd WinEnter * if &buftype ==# 'terminal' | normal i | endif
+endif
+
+tnoremap <Esc> <C-\><C-n>
 
 "---------------------------------
 " startify

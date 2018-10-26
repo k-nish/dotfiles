@@ -202,6 +202,8 @@ endif
 
 tnoremap <Esc> <C-\><C-n>
 
+nnoremap ,t :terminal<CR>
+
 "---------------------------------
 " startify
 "---------------------------------

@@ -204,16 +204,16 @@ tnoremap <Esc> <C-\><C-n>
 
 nnoremap ,t :terminal<CR>
 
-let g:python_host_prog = '/usr/bin/python2'
-let g:python3_host_prog = '/usr/bin/python3'
+" let g:python_host_prog = '/usr/bin/python2'
+" let g:python3_host_prog = '/usr/bin/python3'
 
-if exists("$VIRTUAL_ENV")
-  if !empty(glob("$VIRTUAL_ENV/bin/python3"))
-    let g:python3_host_prog = substitute(system("which python"), '\n', '', 'g')
-  else
-    let g:python_host_prog = substitute(system("which python"), '\n', '', 'g')
-  endif
-endif
+" if exists("$VIRTUAL_ENV")
+"   if !empty(glob("$VIRTUAL_ENV/bin/python3"))
+"     let g:python3_host_prog = substitute(system("which python"), '\n', '', 'g')
+"   else
+"     let g:python_host_prog = substitute(system("which python"), '\n', '', 'g')
+"   endif
+" endif
 
 "---------------------------------
 " startify
@@ -459,11 +459,6 @@ function! s:check_back_space() abort "{{{
 let col = col('.') - 1
 return !col || getline('.')[col - 1]  =~ '\s'
 endfunction"}}}
-
-inoremap <expr><C-h>
-\ deoplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS>
-\ deoplete#smart_close_popup()."\<C-h>"
 
 " deoplete tab-complete
 "inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<C-j>"

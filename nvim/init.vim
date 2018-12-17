@@ -29,6 +29,17 @@ if has('vim_starting') && dein#check_install()
   call dein#install()
 endif
 " }}
+set runtimepath+=$HOME/.config/nvim/plugins/repos/github.com/Shougo/dein.vim
+if dein#load_state(expand('~/.config/nvim/plugins'))
+  call dein#begin(expand('~/.config/nvim/plugins'))
+  call dein#add('Shougo/dein.vim')
+  call dein#add('Shougo/denite.nvim')
+  call dein#end()
+  call dein#save_state()
+endif
+if dein#check_install()
+  call dein#install()
+endif
 
 filetype plugin indent on
 syntax enable
@@ -433,6 +444,9 @@ endif
 "---------------------------------
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#auto_complete_delay = 0
+" disable autocomplete by default
+let b:deoplete_disable_auto_complete=1
+let g:deoplete_disable_auto_complete=1
 let g:deoplete#auto_complete_start_length = 1
 let g:deoplete#enable_camel_case = 0
 let g:deoplete#enable_ignore_case = 0
@@ -440,25 +454,43 @@ let g:deoplete#enable_refresh_always = 0
 let g:deoplete#enable_smart_case = 1
 let g:deoplete#file#enable_buffer_path = 1
 let g:deoplete#max_list = 10000
+let g:deoplete#max_abbr_width=0
+let g:deoplete#max_menu_width=0
+imap <expr><Tab> pumvisible() ? "\<C-n>": "\<Tab>"
+imap <expr><S-Tab> pumvisible() ? "\<C-p>": "\<S-Tab>"
+let g:echodoc_enable_at_startup=1
 
-inoremap <silent><expr> <TAB>
-\ pumvisible() ? "\<C-n>" :
-\ <SID>check_back_space() ? "\<TAB>" :
-\ deoplete#mappings#manual_complete()
-function! s:check_back_space() abort "{{{
-let col = col('.') - 1
-return !col || getline('.')[col - 1]  =~ '\s'
-endfunction"}}}
+let g:deoplete#sources = {}
 
-"inoremap <silent><expr> <C-j>
-inoremap <silent><expr> <C-s>
-\ pumvisible() ? "\<C-n>" :
-\ <SID>check_back_space() ? "\<TAB>" :
-\ deoplete#mappings#manual_complete()
-function! s:check_back_space() abort "{{{
-let col = col('.') - 1
-return !col || getline('.')[col - 1]  =~ '\s'
-endfunction"}}}
+inoremap <silent><expr><CR>     pumvisible() ? deoplete#mappings#close_popup() : "\<CR>"
+inoremap <silent><expr><Tab>    pumvisible() ? "\<C-n>".deoplete#mappings#close_popup() : "\<Tab>"
+inoremap <silent><expr><Up>     pumvisible() ? "\<C-p>"  : "\<Up>"
+inoremap <silent><expr><Down>   pumvisible() ? "\<C-n>"  : "\<Down>"
+inoremap <silent><expr><C-Up>   pumvisible() ? deoplete#mappings#cancel_popup()."\<Up>" : "\<C-Up>"
+inoremap <silent><expr><C-Down> pumvisible() ? deoplete#mappings#cancel_popup()."\<Down>" : "\<C-Down>"
+inoremap <silent><expr><Left>   pumvisible() ? deoplete#mappings#cancel_popup()."\<Left>"  : "\<Left>"
+inoremap <silent><expr><Right>  pumvisible() ? deoplete#mappings#cancel_popup()."\<Right>" : "\<Right>"
+inoremap <silent><expr><C-l>    pumvisible() ? deoplete#mappings#refresh() : "\<C-l>"
+inoremap <silent><expr><C-z>    deoplete#mappings#undo_completion()
+
+"inoremap <silent><expr> <TAB>
+"\ pumvisible() ? "\<C-n>" :
+"\ <SID>check_back_space() ? "\<TAB>" :
+"\ deoplete#mappings#manual_complete()
+"function! s:check_back_space() abort "{{{
+"let col = col('.') - 1
+"return !col || getline('.')[col - 1]  =~ '\s'
+"endfunction"}}}
+
+""inoremap <silent><expr> <C-j>
+"inoremap <silent><expr> <C-s>
+"\ pumvisible() ? "\<C-n>" :
+"\ <SID>check_back_space() ? "\<TAB>" :
+"\ deoplete#mappings#manual_complete()
+"function! s:check_back_space() abort "{{{
+"let col = col('.') - 1
+"return !col || getline('.')[col - 1]  =~ '\s'
+"endfunction"}}}
 
 " deoplete tab-complete
 "inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<C-j>"

@@ -30,9 +30,11 @@ sudo apt install -y ctags zsh curl tig git htop
 echo "setup zsh"
 echo "nishimura" | which zsh | xargs -t sudo -S chsh -s
 
+echo "setup tmux"
+cp ./tmux/.tmux.conf $HOME/.tmux.conf
+
 echo "install oh-my-zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
 echo "setup zsh"
 cp ./zsh/.zshrc $HOME/
-

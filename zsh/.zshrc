@@ -110,6 +110,7 @@ bindkey '^R' history-incremental-pattern-search-backward
 ########################################
 # エイリアス
 
+alias ls='exa'
 alias la='ls -a'
 alias ll='ls -l'
 
@@ -146,23 +147,25 @@ alias ala=alacritty
 alias py=python3
 alias py2=python2
 
-alias env35='source activate py35'
-alias env27='source activate py27'
+alias vs='nvim ~/.ssh/config'
+alias vz='nvim ~/.zshrc'
 
 
-########################################
-# OS 別の設定
-case ${OSTYPE} in
-    darwin*)
-        #Mac用の設定
-        export CLICOLOR=1
-        alias ls='ls -G -F'
-        ;;
-    linux*)
-        #Linux用の設定
-        alias ls='ls -F --color=auto'
-        ;;
-esac
+#########################################
+## OS 別の設定
+#case ${OSTYPE} in
+#    darwin*)
+#        #Mac用の設定
+#        export CLICOLOR=1
+#        alias ls='ls -G -F'
+#        ;;
+#    linux*)
+#        #Linux用の設定
+#        alias ls='ls -F --color=auto'
+#        ;;
+#esac
+
+alias l='exa -hla --git'
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -368,3 +371,7 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 # PROMPT+="%{${reset_color}%}
 # %F{207}%# "
 # %F{226}%# %{${reset_color}%}"
+
+source ~/.cargo/env
+alias ls='exa'
+alias l='exa -hla --git'

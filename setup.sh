@@ -25,11 +25,10 @@ tar -zxvf ./zsh/peco_linux_386.tar.gz
 sudo cp peco_linux_386/peco /usr/local/bin/
 
 echo "install necessary moduels"
-sudo apt install -y ctags zsh curl tig git htop
+sudo apt install -y ctags zsh curl tig git htop ack-grep parallel cmake
 
-echo "install ripgrep"
-curl -LO https://github.com/BurntSushi/ripgrep/releases/download/0.10.0/ripgrep_0.10.0_amd64.deb
-sudo dpkg -i ripgrep_0.10.0_amd64.deb
+echo "install cargo"
+curl https://sh.rustup.rs -sSf | sh
 
 echo "setup zsh"
 echo "nishimura" | which zsh | xargs -t sudo -S chsh -s

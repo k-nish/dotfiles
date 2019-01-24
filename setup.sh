@@ -25,7 +25,7 @@ tar -zxvf ./zsh/peco_linux_386.tar.gz
 sudo cp peco_linux_386/peco /usr/local/bin/
 
 echo "install necessary moduels"
-sudo apt install -y ctags zsh curl tig git htop ack-grep parallel cmake
+sudo apt install -y ctags zsh curl tig git htop ack-grep parallel cmake byobu
 
 echo "install cargo"
 curl https://sh.rustup.rs -sSf | sh

@@ -127,6 +127,7 @@ alias sudo='sudo '
 alias -g L='| less'
 alias -g G='| grep'
 alias -g P='| peco'
+alias -g W='| wc -l'
 
 # C で標準出力をクリップボードにコピーする
 # mollifier delta blog : http://mollifier.hatenablog.com/entry/20100317/p1

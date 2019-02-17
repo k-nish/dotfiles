@@ -326,7 +326,7 @@ function peco-z-search
   fi
 }
 zle -N peco-z-search
-bindkey '^j' peco-z-search
+bindkey '^s' peco-z-search
 
 # peco find directory
 function peco-find() {

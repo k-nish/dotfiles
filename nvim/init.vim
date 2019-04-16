@@ -669,3 +669,7 @@ let g:rainbow_conf = {
 \    }
 \}
 
+"--------------------------------
+"python-syntax
+"--------------------------------
+let g:python_highlight_all = 1

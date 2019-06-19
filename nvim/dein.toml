@@ -112,8 +112,3 @@ repo = 'luochen1990/rainbow'
 [[plugins]]
 repo = 'kana/vim-submode'
 
-[[plugins]]
-repo = 'sheerun/vim-polyglot'
-
-[[plugins]]
-repo = 'vim-python/python-syntax'

@@ -114,7 +114,7 @@ filetype plugin indent on
 set background=dark
 "set clipboard+=unnamed,autoselect
 set clipboard+=unnamed
-set relativenumber
+" set relativenumber
 set number
 set title
 "set softtabstop=4

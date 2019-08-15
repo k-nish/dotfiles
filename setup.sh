@@ -26,6 +26,7 @@ sudo cp peco_linux_386/peco /usr/local/bin/
 
 echo "install necessary moduels"
 sudo apt install -y ctags zsh curl tig git htop ack-grep parallel cmake byobu
+sudo add-apt-repository ppa:lazygit-team/release && sudo apt-get update && sudo apt-get install lazygit
 
 echo "install cargo"
 curl https://sh.rustup.rs -sSf | sh
@@ -41,3 +42,4 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 
 echo "setup zsh"
 cp ./zsh/.zshrc $HOME/
+cargo install exa ripgrep

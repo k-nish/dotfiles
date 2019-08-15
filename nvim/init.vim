@@ -242,7 +242,7 @@ let g:startify_list_order = [
         \ ]
 let g:startify_bookmarks = ["~/.config/nvim/init.vim", "~/.config/nvim/dein.toml", "~/.zshrc"]
 let g:startify_session_autoload = 1
-nnoremap <silent> <C-j> :Startify<CR>
+nnoremap <silent> <C-p> :Startify<CR>
 
 
 

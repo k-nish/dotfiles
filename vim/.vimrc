@@ -100,7 +100,6 @@ map ,g :noh<cr>
 "色を付ける
 syntax on
 syntax enable
-colorscheme murphy
 
 if exists('$TMUX')
   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"

@@ -425,7 +425,7 @@ nnoremap <silent> <F2> : IndentLinesToggle <CR>
 "jedi-vim
 "---------------------------------
 autocmd FileType python setlocal omnifunc=jedi#completions
-let g:jedi#completions_enabled = 0
+let g:jedi#completions_enabled = 1
 let g:jedi#auto_vim_configuration = 0
 let g:jedi#use_tabs_not_buffers = 0
 let g:jedi#popup_on_dot = 0
@@ -458,56 +458,11 @@ let g:deoplete#file#enable_buffer_path = 1
 let g:deoplete#max_list = 10000
 let g:deoplete#max_abbr_width=0
 let g:deoplete#max_menu_width=0
-imap <expr><Tab> pumvisible() ? "\<C-n>": "\<Tab>"
-imap <expr><S-Tab> pumvisible() ? "\<C-p>": "\<S-Tab>"
 let g:echodoc_enable_at_startup=1
 
 let g:deoplete#sources = {}
 
-inoremap <silent><expr><CR>     pumvisible() ? deoplete#mappings#close_popup() : "\<CR>"
-inoremap <silent><expr><Tab>    pumvisible() ? "\<C-n>".deoplete#mappings#close_popup() : "\<Tab>"
-inoremap <silent><expr><Up>     pumvisible() ? "\<C-p>"  : "\<Up>"
-inoremap <silent><expr><Down>   pumvisible() ? "\<C-n>"  : "\<Down>"
-inoremap <silent><expr><C-Up>   pumvisible() ? deoplete#mappings#cancel_popup()."\<Up>" : "\<C-Up>"
-inoremap <silent><expr><C-Down> pumvisible() ? deoplete#mappings#cancel_popup()."\<Down>" : "\<C-Down>"
-inoremap <silent><expr><Left>   pumvisible() ? deoplete#mappings#cancel_popup()."\<Left>"  : "\<Left>"
-inoremap <silent><expr><Right>  pumvisible() ? deoplete#mappings#cancel_popup()."\<Right>" : "\<Right>"
-inoremap <silent><expr><C-l>    pumvisible() ? deoplete#mappings#refresh() : "\<C-l>"
-inoremap <silent><expr><C-z>    deoplete#mappings#undo_completion()
-
-"inoremap <silent><expr> <TAB>
-"\ pumvisible() ? "\<C-n>" :
-"\ <SID>check_back_space() ? "\<TAB>" :
-"\ deoplete#mappings#manual_complete()
-"function! s:check_back_space() abort "{{{
-"let col = col('.') - 1
-"return !col || getline('.')[col - 1]  =~ '\s'
-"endfunction"}}}
-
-""inoremap <silent><expr> <C-j>
-"inoremap <silent><expr> <C-s>
-"\ pumvisible() ? "\<C-n>" :
-"\ <SID>check_back_space() ? "\<TAB>" :
-"\ deoplete#mappings#manual_complete()
-"function! s:check_back_space() abort "{{{
-"let col = col('.') - 1
-"return !col || getline('.')[col - 1]  =~ '\s'
-"endfunction"}}}
-
-" deoplete tab-complete
-"inoremap <expr><C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-"inoremap <expr> <C-j>  deoplete#mappings#manual_complete()
-"inoremap <expr> <C-j>  pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
-"inoremap <expr> <C-h> pumvisible() ? "\<C-p>" : "\<C-u>"
-
-" inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-" inoremap <expr> <Tab>  deoplete#mappings#manual_complete()
-" inoremap <expr> <Tab>  pumvisible() ? "\<C-n>" : deoplete#mappings#manual_complete()
-" inoremap <expr> <S-Tab>  pumvisible() ? "\<C-p>" : "\<S-Tab>"
-"---------------------------------
-"deoplete-jedi
-"---------------------------------
-let g:deoplete#enable_at_startup = 1
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
 "---------------------------------
 "vim-airline
@@ -597,7 +552,7 @@ let g:ale_keep_list_window_open = 0
 
 " 有効にするlinter
 let g:ale_linters = {
-\   'python': ['pylint'],
+\   'python': ['flake8'],
 \}
 
 " ALE用プレフィックス
@@ -675,3 +630,8 @@ let g:rainbow_conf = {
 "python-syntax
 "--------------------------------
 let g:python_highlight_all = 1
+
+"--------------------------------
+"SuperTab
+"--------------------------------
+let g:SuperTabDefaultCompletionType = "<c-n>"

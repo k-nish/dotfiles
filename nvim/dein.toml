@@ -112,3 +112,5 @@ repo = 'luochen1990/rainbow'
 [[plugins]]
 repo = 'kana/vim-submode'
 
+[[plugins]]
+repo = 'ervandew/supertab'

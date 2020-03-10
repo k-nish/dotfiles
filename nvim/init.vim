@@ -45,7 +45,7 @@ filetype plugin indent on
 syntax enable
 syntax on
 " colorscheme onedark
-"colorscheme molokai
+colorscheme molokai
 "colorscheme koehler
 "colorscheme elflord
 "colorscheme spring-night
@@ -55,7 +55,7 @@ syntax on
 "colorscheme tender
 " colorscheme candy
 " colorscheme badwolf
-colorscheme eldar
+" colorscheme eldar
 " colorscheme gruvbox
 " let g:gruvbox_contrast_dark = 'hard'
 let g:molokai_original = 1

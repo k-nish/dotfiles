@@ -72,8 +72,6 @@ nnoremap ; :
 nnoremap : ;
 vnoremap ; :
 vnoremap : ;
-inoremap ; :
-inoremap : ;
 
 "行頭移動を-にする
 nnoremap - ^

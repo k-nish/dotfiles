@@ -215,17 +215,6 @@ tnoremap <Esc> <C-\><C-n>
 
 nnoremap ,t :terminal<CR>
 
-" let g:python_host_prog = '/usr/bin/python2'
-" let g:python3_host_prog = '/usr/bin/python3'
-
-" if exists("$VIRTUAL_ENV")
-"   if !empty(glob("$VIRTUAL_ENV/bin/python3"))
-"     let g:python3_host_prog = substitute(system("which python"), '\n', '', 'g')
-"   else
-"     let g:python_host_prog = substitute(system("which python"), '\n', '', 'g')
-"   endif
-" endif
-
 "---------------------------------
 " startify
 "---------------------------------
@@ -540,6 +529,8 @@ let g:ale_lint_on_enter = 1
 let g:ale_lint_on_save = 1
 " 編集中のlintはしない
 let g:ale_lint_on_text_changed = 'never'
+" ファイル保存時に自動的にFixするオプションもあるのでお好みで
+let g:ale_fix_on_save = 1
 
 " lint結果をロケーションリストとQuickFixには表示しない
 " 出てると結構うざいしQuickFixを書き換えられるのは困る
@@ -552,6 +543,25 @@ let g:ale_keep_list_window_open = 0
 let g:ale_linters = {
 \   'python': ['flake8'],
 \}
+
+" 各ツールをFixerとして登録
+let g:ale_fixers = {
+    \ 'python': ['yapf'],
+    \ }
+
+" 各ツールの実行オプションを変更してPythonパスを固定
+let g:python3_host_prog = '/usr/bin/python3'
+let g:ale_python_flake8_executable = g:python3_host_prog
+let g:ale_python_flake8_options = '-m flake8'
+let g:ale_python_autopep8_executable = g:python3_host_prog
+let g:ale_python_autopep8_options = '-m autopep8'
+let g:ale_python_isort_executable = g:python3_host_prog
+let g:ale_python_isort_options = '-m isort'
+let g:ale_python_black_executable = g:python3_host_prog
+let g:ale_python_black_options = '-m black'
+
+" " ついでにFixを実行するマッピングしとく
+nmap <silent> <C-x> <Plug>(ale_fix)
 
 " ALE用プレフィックス
 nmap [ale] <Nop>

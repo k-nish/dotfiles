@@ -1,4 +1,4 @@
 [flake8]
 ignore = E401, E402, E501, E226, E225, E231, F401, E126, D100, D101, D102, D103, D104, D105, D106, D107, D400, D401, D402, D403, Q000, W503
-max_line_length = 160
+max_line_length = 80
 max_comlexity = 10

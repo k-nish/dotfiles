@@ -114,3 +114,11 @@ repo = 'kana/vim-submode'
 
 [[plugins]]
 repo = 'ervandew/supertab'
+
+[[plugins]]
+repo = 'tbodt/deoplete-tabnine'
+build = './install.sh'
+
+[[plugins]]
+repo = 'heavenshell/vim-pydocstring'
+buid = 'make install'

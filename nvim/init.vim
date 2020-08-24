@@ -34,6 +34,7 @@ if dein#load_state(expand('~/.config/nvim/plugins'))
   call dein#begin(expand('~/.config/nvim/plugins'))
   call dein#add('Shougo/dein.vim')
   call dein#add('Shougo/denite.nvim')
+  call dein#add('tbodt/deoplete-tabnine', { 'build': './install.sh' })
   call dein#end()
   call dein#save_state()
 endif
@@ -44,17 +45,14 @@ endif
 filetype plugin indent on
 syntax enable
 syntax on
-" colorscheme onedark
-colorscheme molokai
+" colorscheme molokai
 "colorscheme koehler
 "colorscheme elflord
 "colorscheme spring-night
 "colorscheme vividchalk
-"colorscheme one
-"colorscheme deus
 "colorscheme tender
 " colorscheme candy
-" colorscheme badwolf
+colorscheme badwolf
 " colorscheme eldar
 " colorscheme gruvbox
 " let g:gruvbox_contrast_dark = 'hard'
@@ -133,6 +131,8 @@ set tabstop=4
 set shiftwidth=4
 " On pressing tab, insert 4 spaces
 set expandtab
+
+set colorcolumn=100
 
 let s:cpo_save = &cpo
 set cpo&vim
@@ -214,6 +214,17 @@ endif
 tnoremap <Esc> <C-\><C-n>
 
 nnoremap ,t :terminal<CR>
+
+" let g:python_host_prog = '/usr/bin/python2'
+" let g:python3_host_prog = '/usr/bin/python3'
+
+" if exists("$VIRTUAL_ENV")
+"   if !empty(glob("$VIRTUAL_ENV/bin/python3"))
+"     let g:python3_host_prog = substitute(system("which python"), '\n', '', 'g')
+"   else
+"     let g:python_host_prog = substitute(system("which python"), '\n', '', 'g')
+"   endif
+" endif
 
 "---------------------------------
 " startify
@@ -529,7 +540,7 @@ let g:ale_lint_on_enter = 1
 let g:ale_lint_on_save = 1
 " 編集中のlintはしない
 let g:ale_lint_on_text_changed = 'never'
-" ファイル保存時に自動的にFixするオプションもあるのでお好みで
+" ファイル保存時に自動的にfixする
 let g:ale_fix_on_save = 1
 
 " lint結果をロケーションリストとQuickFixには表示しない
@@ -546,21 +557,10 @@ let g:ale_linters = {
 
 " 各ツールをFixerとして登録
 let g:ale_fixers = {
-    \ 'python': ['yapf'],
-    \ }
+\   'python': ['black', 'yapf'],
+\}
 
-" 各ツールの実行オプションを変更してPythonパスを固定
-let g:python3_host_prog = '/usr/bin/python3'
-let g:ale_python_flake8_executable = g:python3_host_prog
-let g:ale_python_flake8_options = '-m flake8'
-let g:ale_python_autopep8_executable = g:python3_host_prog
-let g:ale_python_autopep8_options = '-m autopep8'
-let g:ale_python_isort_executable = g:python3_host_prog
-let g:ale_python_isort_options = '-m isort'
-let g:ale_python_black_executable = g:python3_host_prog
-let g:ale_python_black_options = '-m black'
-
-" " ついでにFixを実行するマッピングしとく
+"ついでにFIxを実行するマッピングしとく
 nmap <silent> <C-x> <Plug>(ale_fix)
 
 " ALE用プレフィックス
@@ -643,3 +643,11 @@ let g:python_highlight_all = 1
 "SuperTab
 "--------------------------------
 let g:SuperTabDefaultCompletionType = "<c-n>"
+
+"--------------------------------
+"vim-pydocstring
+"--------------------------------
+autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
+nmap <silent> <Leader>e <Plug>(pydocstring)
+let g:pydocstring_formatter = 'google'
+let g:pydocstring_doq_path = system('which doq')

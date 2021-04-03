@@ -443,20 +443,21 @@ endif
 "deoplete
 "---------------------------------
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#auto_complete_delay = 0
 " disable autocomplete by default
-let b:deoplete_disable_auto_complete=1
 let g:deoplete_disable_auto_complete=1
-let g:deoplete#auto_complete_start_length = 1
 let g:deoplete#enable_camel_case = 0
 let g:deoplete#enable_ignore_case = 0
-let g:deoplete#enable_refresh_always = 0
 let g:deoplete#enable_smart_case = 1
-let g:deoplete#file#enable_buffer_path = 1
-let g:deoplete#max_list = 10000
 let g:deoplete#max_abbr_width=0
 let g:deoplete#max_menu_width=0
 let g:echodoc_enable_at_startup=1
+
+let g:deoplete#auto_complete_delay = 0
+let g:deoplete#max_list = 10000
+let g:deoplete#file#enable_buffer_path = 1
+let g:deoplete#enable_refresh_always = 0
+let g:deoplete#auto_complete_start_length = 1
+
 
 let g:deoplete#sources = {}
 
@@ -557,7 +558,8 @@ let g:ale_linters = {
 
 " 各ツールをFixerとして登録
 let g:ale_fixers = {
-\   'python': ['black', 'yapf'],
+\    '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'python': ['black'],
 \}
 
 "ついでにFIxを実行するマッピングしとく
@@ -648,6 +650,6 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 "vim-pydocstring
 "--------------------------------
 autocmd FileType python setlocal tabstop=4 shiftwidth=4 softtabstop=4 expandtab
-nmap <silent> <Leader>e <Plug>(pydocstring)
+nmap <silent> <C-c> <Plug>(pydocstring)
 let g:pydocstring_formatter = 'google'
-let g:pydocstring_doq_path = system('which doq')
+let g:pydocstring_doq_path = '/usr/local/bin/doq'

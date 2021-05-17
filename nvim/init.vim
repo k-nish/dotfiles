@@ -562,7 +562,8 @@ let g:ale_fixers = {
 \   'python': ['black'],
 \}
 
-"ついでにFIxを実行するマッピングしとく
+let g:ale_python_black_options = '-m black -S'
+"ついでにFixを実行するマッピングしとく
 nmap <silent> <C-x> <Plug>(ale_fix)
 
 " ALE用プレフィックス

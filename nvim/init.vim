@@ -132,7 +132,7 @@ set shiftwidth=4
 " On pressing tab, insert 4 spaces
 set expandtab
 
-set colorcolumn=100
+set colorcolumn=80
 
 let s:cpo_save = &cpo
 set cpo&vim

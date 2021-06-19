@@ -29,7 +29,7 @@ sudo apt install -y ctags zsh curl tig git htop ack-grep parallel cmake byobu
 sudo add-apt-repository ppa:lazygit-team/release && sudo apt-get update && sudo apt-get install lazygit
 
 echo "install cargo"
-curl https://sh.rustup.rs -sSf | sh
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 echo "setup zsh"
 echo "nishimura" | which zsh | xargs -t sudo -S chsh -s

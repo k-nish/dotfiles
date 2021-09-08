@@ -130,3 +130,9 @@ depends = ['deoplete.nvim']
 
 [[plugins]]
 repo = 'pechorin/any-jump.vim'
+
+[[plugins]]
+repo = 'ms-jpq/coq_nvim'
+
+[[plugins]]
+repo = 'ms-jpq/coq.artifacts'

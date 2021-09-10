@@ -34,7 +34,7 @@ if dein#load_state(expand('~/.config/nvim/plugins'))
   call dein#begin(expand('~/.config/nvim/plugins'))
   call dein#add('Shougo/dein.vim')
   call dein#add('Shougo/denite.nvim')
-  call dein#add('tbodt/deoplete-tabnine', { 'build': './install.sh' })
+  " call dein#add('tbodt/deoplete-tabnine', { 'build': './install.sh' })
   call dein#end()
   call dein#save_state()
 endif
@@ -132,6 +132,7 @@ set shiftwidth=4
 " On pressing tab, insert 4 spaces
 set expandtab
 
+set colorcolumn=70
 set colorcolumn=80
 
 let s:cpo_save = &cpo
@@ -439,29 +440,29 @@ if !exists('g:neocomplete#force_omni_input_patterns')
         let g:neocomplete#force_omni_input_patterns = {}
 endif
 
-"---------------------------------
-"deoplete
-"---------------------------------
-let g:deoplete#enable_at_startup = 1
-" disable autocomplete by default
-let g:deoplete_disable_auto_complete=1
-let g:deoplete#enable_camel_case = 0
-let g:deoplete#enable_ignore_case = 0
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#max_abbr_width=0
-let g:deoplete#max_menu_width=0
-let g:echodoc_enable_at_startup=1
+""---------------------------------
+""deoplete
+""---------------------------------
+"let g:deoplete#enable_at_startup = 1
+"" disable autocomplete by default
+"let g:deoplete_disable_auto_complete=1
+"let g:deoplete#enable_camel_case = 0
+"let g:deoplete#enable_ignore_case = 0
+"let g:deoplete#enable_smart_case = 1
+"let g:deoplete#max_abbr_width=0
+"let g:deoplete#max_menu_width=0
+"let g:echodoc_enable_at_startup=1
 
-let g:deoplete#auto_complete_delay = 0
-let g:deoplete#max_list = 10000
-let g:deoplete#file#enable_buffer_path = 1
-let g:deoplete#enable_refresh_always = 0
-let g:deoplete#auto_complete_start_length = 1
+"let g:deoplete#auto_complete_delay = 0
+"let g:deoplete#max_list = 10000
+"let g:deoplete#file#enable_buffer_path = 1
+"let g:deoplete#enable_refresh_always = 0
+"let g:deoplete#auto_complete_start_length = 1
 
 
-let g:deoplete#sources = {}
+"let g:deoplete#sources = {}
 
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+"inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 
 "---------------------------------
 "vim-airline
@@ -655,68 +656,73 @@ nmap <silent> <C-c> <Plug>(pydocstring)
 let g:pydocstring_formatter = 'google'
 let g:pydocstring_doq_path = '/usr/local/bin/doq'
 
-"--------------------------------
-"any-jump
-"--------------------------------
-" Normal mode: Jump to definition under cursore
-nnoremap <C-j> :AnyJump<CR>
-" Visual mode: jump to selected text in visual mode
-xnoremap <C-j> :AnyJumpVisual<CR>
-" Show line numbers in search rusults
-let g:any_jump_list_numbers = 0
-" Auto search references
-let g:any_jump_references_enabled = 1
-" Auto group results by filename
-let g:any_jump_grouping_enabled = 0
-" Amount of preview lines for each search result
-let g:any_jump_preview_lines_count = 5
-" Max search results, other results can be opened via [a]
-let g:any_jump_max_search_results = 10
-" Prefered search engine: rg or ag
-let g:any_jump_search_prefered_engine = 'rg'
-" Search results list styles:
-" - 'filename_first'
-" - 'filename_last'
-let g:any_jump_results_ui_style = 'filename_first'
-" Any-jump window size & position options
-let g:any_jump_window_width_ratio  = 0.6
-let g:any_jump_window_height_ratio = 0.6
-let g:any_jump_window_top_offset   = 4
-" Customize any-jump colors with extending default color scheme:
-" let g:any_jump_colors = { "help": "Comment" }
-"
-" Or override all default colors
-let g:any_jump_colors = {
-      \"plain_text":         "Comment",
-      \"preview":            "Comment",
-      \"preview_keyword":    "Operator",
-      \"heading_text":       "Function",
-      \"heading_keyword":    "Identifier",
-      \"group_text":         "Comment",
-      \"group_name":         "Function",
-      \"more_button":        "Operator",
-      \"more_explain":       "Comment",
-      \"result_line_number": "Comment",
-      \"result_text":        "Statement",
-      \"result_path":        "String",
-      \"help":               "Comment"
-      \}
-" Disable default any-jump keybindings (default: 0)
-let g:any_jump_disable_default_keybindings = 1
-" Remove comments line from search results (default: 1)
-let g:any_jump_remove_comments_from_results = 1
-" Custom ignore files
-" default is: ['*.tmp', '*.temp']
-let g:any_jump_ignored_files = ['*.tmp', '*.temp']
-" Search references only for current file type
-" (default: false, so will find keyword in all filetypes)
-let g:any_jump_references_only_for_current_filetype = 0
-" Disable search engine ignore vcs untracked files
-" (default: false, search engine will ignore vcs untracked files)
-let g:any_jump_disable_vcs_ignore = 0
-
+""--------------------------------
+""any-jump
+""--------------------------------
+"" Normal mode: Jump to definition under cursore
+"nnoremap <C-j> :AnyJump<CR>
+"" Visual mode: jump to selected text in visual mode
+"xnoremap <C-j> :AnyJumpVisual<CR>
+"" Show line numbers in search rusults
+"let g:any_jump_list_numbers = 0
+"" Auto search references
+"let g:any_jump_references_enabled = 1
+"" Auto group results by filename
+"let g:any_jump_grouping_enabled = 0
+"" Amount of preview lines for each search result
+"let g:any_jump_preview_lines_count = 5
+"" Max search results, other results can be opened via [a]
+"let g:any_jump_max_search_results = 10
+"" Prefered search engine: rg or ag
+"let g:any_jump_search_prefered_engine = 'rg'
+"" Search results list styles:
+"" - 'filename_first'
+"" - 'filename_last'
+"let g:any_jump_results_ui_style = 'filename_first'
+"" Any-jump window size & position options
+"let g:any_jump_window_width_ratio  = 0.6
+"let g:any_jump_window_height_ratio = 0.6
+"let g:any_jump_window_top_offset   = 4
+"" Customize any-jump colors with extending default color scheme:
+"" let g:any_jump_colors = { "help": "Comment" }
+""
+"" Or override all default colors
+"let g:any_jump_colors = {
+"      \"plain_text":         "Comment",
+"      \"preview":            "Comment",
+"      \"preview_keyword":    "Operator",
+"      \"heading_text":       "Function",
+"      \"heading_keyword":    "Identifier",
+"      \"group_text":         "Comment",
+"      \"group_name":         "Function",
+"      \"more_button":        "Operator",
+"      \"more_explain":       "Comment",
+"      \"result_line_number": "Comment",
+"      \"result_text":        "Statement",
+"      \"result_path":        "String",
+"      \"help":               "Comment"
+"      \}
+"" Disable default any-jump keybindings (default: 0)
+"let g:any_jump_disable_default_keybindings = 1
+"" Remove comments line from search results (default: 1)
+"let g:any_jump_remove_comments_from_results = 1
+"" Custom ignore files
+"" default is: ['*.tmp', '*.temp']
+"let g:any_jump_ignored_files = ['*.tmp', '*.temp']
+"" Search references only for current file type
+"" (default: false, so will find keyword in all filetypes)
+"let g:any_jump_references_only_for_current_filetype = 0
+"" Disable search engine ignore vcs untracked files
+"" (default: false, search engine will ignore vcs untracked files)
+"let g:any_jump_disable_vcs_ignore = 0
 
 ""--------------------------------
 ""coq
 ""--------------------------------
-let g:coq_settings = { 'auto_start': v:true, 'clients.tabnine.enabled': v:true, 'keymap.jump_to_mark': v:null}
+let g:coq_settings = { 'auto_start': v:true, 'clients.tabnine.enabled': v:true}
+
+" Find files using Telescope command-line sugar.
+nnoremap ff <cmd>Telescope find_files<cr>
+nnoremap fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>

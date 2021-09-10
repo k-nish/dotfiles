@@ -377,3 +377,5 @@ source ~/.cargo/env
 alias ls='exa'
 alias l='exa -hla --git'
 alias lg='lazygit'
+
+eval "$(zoxide init zsh)"

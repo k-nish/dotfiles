@@ -719,7 +719,7 @@ let g:pydocstring_doq_path = '/usr/local/bin/doq'
 ""--------------------------------
 ""coq
 ""--------------------------------
-let g:coq_settings = { 'auto_start': v:true, 'clients.tabnine.enabled': v:true}
+let g:coq_settings = { 'auto_start': v:true, 'clients.tabnine.enabled': v:true, 'keymap.jump_to_mark': v:null}
 
 " Find files using Telescope command-line sugar.
 nnoremap ff <cmd>Telescope find_files<cr>

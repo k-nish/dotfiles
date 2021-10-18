@@ -581,11 +581,11 @@ call map(dein#check_clean(), "delete(v:val, 'rf')")
 "---------------------------------
 " fugitive.vim
 "---------------------------------
-nnoremap <silent> <C-b> :Gblame<CR>
-nnoremap <silent> <Leader>d :Gdiff<CR>
-nnoremap <silent> <C-s> :Gstatus<CR>
-nnoremap <silent> <Leader>a :Gwrite<CR>
-nnoremap <silent> <Leader>c :Gcommit<CR>
+nnoremap <silent> <C-b> :Git blame<CR>
+nnoremap <silent> <Leader>d :Git diff<CR>
+nnoremap <silent> <C-s> :Git status<CR>
+nnoremap <silent> <Leader>a :Git write<CR>
+nnoremap <silent> <Leader>c :Git commit<CR>
 "command-line completion
 set wildmenu
 set wildmode=list:longest
